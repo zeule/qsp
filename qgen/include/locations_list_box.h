@@ -3,6 +3,8 @@
 
 #include "settings.h"
 
+#include <QListWidget>
+
 namespace QGen
 {
 

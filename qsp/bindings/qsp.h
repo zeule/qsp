@@ -18,15 +18,7 @@
 #ifndef QSP_H
 	#define QSP_H
 
-	#ifdef EXPORT
-		#ifdef _WIN
-			#define QSP_EXTERN __declspec(dllexport)
-		#else
-			#define QSP_EXTERN extern
-		#endif
-	#else
-		#define QSP_EXTERN
-	#endif
+	#include "qsp_export.h"
 
 	enum
 	{

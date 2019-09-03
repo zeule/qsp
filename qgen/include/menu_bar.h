@@ -3,6 +3,8 @@
 
 #include "settings.h"
 
+#include <QMenuBar>
+
 namespace QGen
 {
 

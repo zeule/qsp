@@ -6,6 +6,8 @@
 #include "tool_bar.h"
 #include "locations_list_box.h"
 
+#include <QMainWindow>
+
 namespace QGen
 {
 
@@ -13,7 +15,7 @@ class MainWindow : public QMainWindow, public IMainWindowView
 {
 	Q_OBJECT
 public:
-	MainWindow(Settings* settings, QWidget *parent = 0, Qt::WFlags flags = 0);
+	MainWindow(Settings* settings, QWidget *parent = 0, Qt::WindowFlags flags = 0);
 	~MainWindow();
 
 private slots:

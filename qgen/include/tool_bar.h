@@ -3,6 +3,8 @@
 
 #include "settings.h"
 
+#include <QToolBar>
+
 namespace QGen
 {
 

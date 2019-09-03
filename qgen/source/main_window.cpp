@@ -4,7 +4,7 @@
 namespace QGen
 {
 
-MainWindow::MainWindow(Settings* settings, QWidget *parent, Qt::WFlags flags)
+MainWindow::MainWindow(Settings* settings, QWidget *parent, Qt::WindowFlags flags)
 	:	QMainWindow(parent, flags),
 		_settings(settings)
 {
