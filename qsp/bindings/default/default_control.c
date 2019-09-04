@@ -38,14 +38,25 @@
 static char *qspLoadFileData(QSPString fileName, int *fileSize);
 static void qspSaveFileData(QSPString fileName, char *data, int dataSize);
 
+static FILE* openFile(QSPString fileName, int write)
+{
+#if defined WIN32 && defined UNICODE
+	return _wfopen(systemName, write ? QSP_FMT("wb") : QSP_FMT("rb"));
+#else
+	int stringLen = qspStrLen(fileName);
+	char* fn = malloc(stringLen + 1);
+	wcstombs(fn, fileName.Str, stringLen);
+	FILE* file = fopen(fn, write ? "wb" : "rb");
+	free(fn);
+	return file;
+#endif
+}
+
 static char *qspLoadFileData(QSPString fileName, int *fileSize)
 {
-	FILE *file;
+	FILE *file = openFile(fileName, QSP_FALSE);
 	int size;
 	char *buf;
-	QSP_CHAR *systemName = qspStringToC(fileName);
-	file = _wfopen(systemName, QSP_FMT("rb"));
-	free(systemName);
 	if (!file) return 0;
 	fseek(file, 0, SEEK_END);
 	size = ftell(file);
@@ -59,10 +70,7 @@ static char *qspLoadFileData(QSPString fileName, int *fileSize)
 
 static void qspSaveFileData(QSPString fileName, char *data, int dataSize)
 {
-	FILE *file;
-	QSP_CHAR *systemName = qspStringToC(fileName);
-	file = _wfopen(systemName, QSP_FMT("wb"));
-	free(systemName);
+	FILE *file = openFile(fileName, QSP_TRUE);
 	if (!file) return;
 	fwrite(data, 1, dataSize, file);
 	fclose(file);
