@@ -9,9 +9,3 @@ include(CMakePackageConfigHelpers)
 
 add_subdirectory(qsp)
 add_subdirectory(txt2gam)
-
-find_package(Qt5 5.11 COMPONENTS Core Widgets)
-
-if (Qt5Widgets_FOUND)
-	add_subdirectory(qgen)
-endif()
