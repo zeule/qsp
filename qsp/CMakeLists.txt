@@ -65,8 +65,11 @@ install(FILES
 		"${CMAKE_INSTALL_LIBDIR}/cmake/Qsp"
 )
 
-install(FILES
-		${CMAKE_SOURCE_DIR}/cmake/Modules/FindOniguruma.cmake
-	DESTINATION
-		"${CMAKE_INSTALL_DATAROOTDIR}/cmake/Modules"
-)
+get_property(_targetType TARGET qsp PROPERTY TYPE)
+if (_targetType STREQUAL "STATIC_LIBRARY")
+	install(FILES
+			${CMAKE_SOURCE_DIR}/cmake/Modules/FindOniguruma.cmake
+		DESTINATION
+			"${CMAKE_INSTALL_DATAROOTDIR}/cmake/Modules"
+	)
+endif()
